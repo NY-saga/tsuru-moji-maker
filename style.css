@@ -291,4 +291,9 @@ body{
     #topScale{
         margin-left:42px;
     }
+
+    body{
+        background:red !important;
+    }
+
 }
