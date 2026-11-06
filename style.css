@@ -292,8 +292,13 @@ body{
         margin-left:42px;
     }
 
-    #boardWrapper{
-        border:10px solid red !important;
+    .crane{
+        width:16px;
+        height:32px;
+    }
+
+    .crane + .crane{
+        margin-top:-17px;
     }
 
 }
