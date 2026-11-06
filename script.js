@@ -704,4 +704,48 @@ function generate() {
             column
         );
     }
+
+    adjustMobileScale();
 }
+
+function adjustMobileScale(){
+
+    if(window.innerWidth > 768){
+
+        const wrapper =
+            document.getElementById(
+                "boardWrapper"
+            );
+
+        wrapper.style.transform =
+            "";
+
+        return;
+    }
+
+    const wrapper =
+        document.getElementById(
+            "boardWrapper"
+        );
+
+    const availableWidth =
+        window.innerWidth - 20;
+
+    const boardWidth =
+        wrapper.scrollWidth;
+
+    const scale =
+        Math.min(
+            1,
+            availableWidth /
+            boardWidth
+        );
+
+    wrapper.style.transform =
+        `scale(${scale})`;
+}
+
+window.addEventListener(
+    "resize",
+    adjustMobileScale
+);

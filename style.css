@@ -234,44 +234,53 @@ body{
 
 /*
 ========================
-スマホ対応
+スマホ最適化
 ========================
 */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px){
 
     .container{
-        flex-direction:column;
+        display:block;
     }
 
     .left{
         width:100%;
         border-right:none;
         border-bottom:1px solid #ddd;
+        padding:15px;
     }
 
     .right{
         width:100%;
         padding:10px;
-    }
-
-    #boardWrapper{
-        transform:scale(0.7);
-        transform-origin:top left;
+        overflow:auto;
+        display:flex;
+        justify-content:center;
     }
 
     .controls{
-        gap:15px;
+        gap:12px;
+    }
+
+    .controls h2,
+    .controls h3{
+        margin-top:10px;
     }
 
     .controls input,
     .controls select,
     .controls button{
-        font-size:16px;
         width:100%;
+        font-size:16px;
+        min-height:44px;
     }
 
-    .controls button{
-        padding:12px;
+    #boardWrapper{
+        transform-origin:top left;
+    }
+
+    #topScale{
+        margin-left:42px;
     }
 }
