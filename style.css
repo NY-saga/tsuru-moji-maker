@@ -127,7 +127,7 @@ body{
 ------------------------ */
 
 #leftScale{
-    width:42px;
+    width:32px;
     display:flex;
     flex-direction:column;
 }
@@ -255,9 +255,15 @@ body{
         width:100%;
         padding:10px;
         overflow:auto;
+        -webkit-overflow-scrolling:touch;
+
         display:flex;
-        justify-content:center;
-        align-items:flex-start;
+        justify-content:flex-start;
+    }
+
+    #boardWrapper{
+        margin-left:0;
+        margin-right:0;
     }
 
     .controls{
