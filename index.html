@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鶴文字設計ツール</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="left">
+
+        <div class="controls">
+
+            <h2>鶴文字設計ツール</h2>
+
+            <label>文字</label>
+            <input
+                type="text"
+                id="textInput"
+                value="必勝">
+
+            <label>横羽数</label>
+            <input
+                type="number"
+                id="colsInput"
+                value="55"
+                min="1">
+
+            <label>縦羽数</label>
+            <input
+                type="number"
+                id="rowsInput"
+                value="55"
+                min="1">
+
+            <hr>
+
+            <label>文字サイズ（%）</label>
+
+            <h3>文字位置調整</h3>
+
+            <label>X移動</label>
+            <input
+                type="number"
+                id="textOffsetX"
+                value="0"
+                step="1">
+
+            <label>Y移動</label>
+            <input
+                type="number"
+                id="textOffsetY"
+                value="0"
+                step="1">
+
+
+            <input
+                type="range"
+                id="textSizeInput"
+                min="20"
+                max="100"
+                value="60">
+
+            <span id="textSizeLabel">
+                60%
+            </span>
+
+            <hr>
+
+            <label>文字色（定番）</label>
+
+            <select id="textColorPreset">
+
+                <option value="#ff0000">
+                    赤
+                </option>
+
+                <option value="#0000ff">
+                    青
+                </option>
+
+                <option value="#ffff00">
+                    黄
+                </option>
+
+                <option value="#ffffff">
+                    白
+                </option>
+
+                <option value="#000000">
+                    黒
+                </option>
+
+                <option value="#00aa00">
+                    緑
+                </option>
+
+            </select>
+
+            <label>文字色（自由）</label>
+
+            <input
+                type="color"
+                id="textColor"
+                value="#ff0000">
+
+            <hr>
+
+            <label>背景色（定番）</label>
+
+            <select id="bgColorPreset">
+
+                <option value="#ffffff">
+                    白
+                </option>
+
+                <option value="#0000ff">
+                    青
+                </option>
+
+                <option value="#ffff00">
+                    黄
+                </option>
+
+                <option value="#ff0000">
+                    赤
+                </option>
+
+                <option value="#000000">
+                    黒
+                </option>
+
+            </select>
+
+            <label>背景色（自由）</label>
+
+            <input
+                type="color"
+                id="bgColor"
+                value="#ffffff">
+
+            <hr>
+
+            <label class="checkLabel">
+
+                <input
+                    type="checkbox"
+                    id="frameEnabled">
+
+                枠線を付ける
+
+            </label>
+
+            <label>枠色（定番）</label>
+
+            <select id="frameColorPreset">
+
+                <option value="#0000ff">
+                    青
+                </option>
+
+                <option value="#ff0000">
+                    赤
+                </option>
+
+                <option value="#ffff00">
+                    黄
+                </option>
+
+                <option value="#000000">
+                    黒
+                </option>
+
+                <option value="#ffffff">
+                    白
+                </option>
+
+            </select>
+
+            <label>枠色（自由）</label>
+
+            <input
+                type="color"
+                id="frameColor"
+                value="#0000ff">
+
+            <label>枠太さ（羽）</label>
+
+            <input
+                type="number"
+                id="frameWidth"
+                value="3"
+                min="1"
+                max="20">
+
+            <hr>
+
+            <h3>年度設定</h3>
+
+            <label class="checkLabel">
+
+                <input
+                    type="checkbox"
+                    id="yearEnabled">
+
+                年度を表示
+
+            </label>
+
+            <label>年度</label>
+
+            <input
+                type="text"
+                id="yearValue"
+                value="2027">
+
+            <label>年度サイズ（%）</label>
+
+            <input
+                type="range"
+                id="yearSize"
+                min="10"
+                max="100"
+                value="30">
+
+            <span id="yearSizeLabel">
+                30%
+            </span>
+
+            <label>年度色（定番）</label>
+
+            <select id="yearColorPreset">
+
+                <option value="#0000ff">
+                    青
+                </option>
+
+                <option value="#ff0000">
+                    赤
+                </option>
+
+                <option value="#ffff00">
+                    黄
+                </option>
+
+                <option value="#ffffff">
+                    白
+                </option>
+
+                <option value="#000000">
+                    黒
+                </option>
+
+                <option value="#00aa00">
+                    緑
+                </option>
+
+            </select>
+
+            <label>年度色（自由）</label>
+
+            <input
+                type="color"
+                id="yearColor"
+                value="#0000ff">
+
+            <label>年度配置</label>
+
+            <select id="yearPosition">
+
+                <option value="top-left">
+                    左上
+                </option>
+
+                <option value="top-center">
+                    上中央
+                </option>
+
+                <option value="top-right">
+                    右上
+                </option>
+
+                <option value="middle-left">
+                    左中央
+                </option>
+
+                <option value="center">
+                    中央
+                </option>
+
+                <option value="middle-right">
+                    右中央
+                </option>
+
+                <option value="bottom-left">
+                    左下
+                </option>
+
+                <option value="bottom-center">
+                    下中央
+                </option>
+
+                <option
+                    value="bottom-right"
+                    selected>
+
+                    右下
+
+                </option>
+
+            </select>
+
+
+
+            <button id="generateBtn">
+
+                生成
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <canvas id="previewCanvas"></canvas>
+
+        <div id="boardWrapper">
+
+            <div id="topScale"></div>
+
+            <div id="boardArea">
+
+                <div id="leftScale"></div>
+
+                <div id="gridContainer"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

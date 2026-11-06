@@ -1,0 +1,233 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+.container{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ------------------------
+   左パネル
+------------------------ */
+
+.left{
+    width:340px;
+    background:#fff;
+    border-right:1px solid #ddd;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.controls{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.controls h2{
+    margin-bottom:10px;
+}
+
+.controls h3{
+    margin-top:5px;
+}
+
+.controls hr{
+    margin:10px 0;
+}
+
+.controls input,
+.controls select,
+.controls button{
+    padding:8px;
+}
+
+.controls button{
+    background:#d32f2f;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.controls button:hover{
+    background:#b71c1c;
+}
+
+.checkLabel{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+#textSizeLabel,
+#yearSizeLabel{
+    font-size:13px;
+    color:#555;
+    margin-top:-4px;
+}
+
+/* ------------------------
+   右エリア
+------------------------ */
+
+.right{
+    flex:1;
+    overflow:auto;
+    padding:20px;
+}
+
+#previewCanvas{
+    display:none;
+}
+
+/* ------------------------
+   全体レイアウト
+------------------------ */
+
+#boardWrapper{
+    display:flex;
+    flex-direction:column;
+    width:max-content;
+}
+
+#boardArea{
+    display:flex;
+}
+
+/* ------------------------
+   横目盛り
+------------------------ */
+
+#topScale{
+    display:flex;
+    margin-left:42px;
+    height:28px;
+    align-items:flex-end;
+}
+
+.topMark{
+    width:22px;
+    text-align:center;
+    font-size:11px;
+    color:#444;
+    user-select:none;
+}
+
+/* ------------------------
+   縦目盛り
+------------------------ */
+
+#leftScale{
+    width:42px;
+    display:flex;
+    flex-direction:column;
+}
+
+.leftMark{
+    height:22px;
+    text-align:right;
+    padding-right:6px;
+    font-size:11px;
+    color:#444;
+    user-select:none;
+}
+
+/* ------------------------
+   鶴エリア
+------------------------ */
+
+#gridContainer{
+    display:flex;
+    gap:0;
+    background:#fff;
+}
+
+/* ------------------------
+   列
+------------------------ */
+
+.column{
+    display:flex;
+    flex-direction:column;
+    margin-left:-2px;
+}
+
+.column:first-child{
+    margin-left:0;
+}
+
+/* ------------------------
+   鶴
+   縦横比 2:1
+------------------------ */
+
+.crane{
+    width:24px;
+    height:48px;
+
+    display:block;
+    flex-shrink:0;
+}
+
+/* 実寸から逆算した重なり率 */
+
+.crane + .crane{
+    margin-top:-26px;
+}
+
+.crane svg{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+/* ------------------------
+   色管理
+------------------------ */
+
+.bg{
+    color:var(--bg-color,#ffffff);
+}
+
+.text{
+    color:var(--text-color,#ff0000);
+}
+
+.frame{
+    color:var(--frame-color,#0000ff);
+}
+
+.year{
+    color:var(--year-color,#0000ff);
+}
+
+/* ------------------------
+   スクロールバー
+------------------------ */
+
+::-webkit-scrollbar{
+    width:10px;
+    height:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#eee;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#bbb;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#999;
+}
