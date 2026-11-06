@@ -231,3 +231,47 @@ body{
 ::-webkit-scrollbar-thumb:hover{
     background:#999;
 }
+
+/*
+========================
+スマホ対応
+========================
+*/
+
+@media (max-width: 768px) {
+
+    .container{
+        flex-direction:column;
+    }
+
+    .left{
+        width:100%;
+        border-right:none;
+        border-bottom:1px solid #ddd;
+    }
+
+    .right{
+        width:100%;
+        padding:10px;
+    }
+
+    #boardWrapper{
+        transform:scale(0.7);
+        transform-origin:top left;
+    }
+
+    .controls{
+        gap:15px;
+    }
+
+    .controls input,
+    .controls select,
+    .controls button{
+        font-size:16px;
+        width:100%;
+    }
+
+    .controls button{
+        padding:12px;
+    }
+}
