@@ -293,12 +293,12 @@ body{
     }
 
     .crane{
-        width:14px;
-        height:28px;
+        width:15px;
+        height:30px;
     }
 
     .crane + .crane{
-        margin-top:-15px;
+        margin-top:-16px;
     }
 
 }
