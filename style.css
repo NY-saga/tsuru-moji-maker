@@ -302,12 +302,12 @@ body{
     }
 
     .topMark{
-        width:15px;
+        width:16px;
     }
 
     .leftMark{
-        height:14px;
-        line-height:14px;
+        height:16px;
+        line-height:16px;
     }
 
 }
