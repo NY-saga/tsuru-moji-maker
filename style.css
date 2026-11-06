@@ -292,6 +292,8 @@ body{
         margin-left:42px;
     }
 
-
+    #boardWrapper{
+        border:10px solid red !important;
+    }
 
 }
