@@ -98,24 +98,17 @@ function bindColorPreset(
     );
 }
 
-bindColorPreset(
-    "textColorPreset",
-    "textColor"
-);
-
-bindColorPreset(
-    "bgColorPreset",
-    "bgColor"
-);
-
-bindColorPreset(
-    "frameColorPreset",
-    "frameColor"
-);
-
-bindColorPreset(
-    "yearColorPreset",
-    "yearColor"
+[
+    ["textColorPreset", "textColor"],
+    ["bgColorPreset", "bgColor"],
+    ["frameColorPreset", "frameColor"],
+    ["yearColorPreset", "yearColor"]
+].forEach(
+    ([preset, color]) =>
+        bindColorPreset(
+            preset,
+            color
+        )
 );
 
 function craneSVG(colorClass) {
@@ -704,4 +697,29 @@ function generate() {
             column
         );
     }
+
+    buildColumnReport(
+        grid,
+        cols,
+        rows,
+        textColor,
+        bgColor,
+        frameColor,
+        yearColor
+    );
+}
+
+function buildColumnReport(){
+
+    const report =
+        document.getElementById(
+            "columnReport"
+        );
+
+    if(!report){
+        return;
+    }
+
+    report.innerHTML =
+        "<p>列別色集計テスト成功</p>";
 }
