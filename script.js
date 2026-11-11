@@ -709,7 +709,15 @@ function generate() {
     );
 }
 
-function buildColumnReport(){
+function buildColumnReport(
+    grid,
+    cols,
+    rows,
+    textColor,
+    bgColor,
+    frameColor,
+    yearColor
+){
 
     const report =
         document.getElementById(
@@ -720,6 +728,253 @@ function buildColumnReport(){
         return;
     }
 
+    let html = "";
+
+    for(
+        let x = 0;
+        x < cols;
+        x++
+    ){
+
+        html += `
+            <h3>
+                L${String(x + 1)
+                    .padStart(3,"0")}
+                （左から${x + 1}列）
+            </h3>
+        `;
+
+        const colorCounts = {};
+
+        for(
+            let y = 0;
+            y < rows;
+            y++
+        ){
+
+            let colorCode = "";
+
+            switch(
+                grid[y][x]
+            ){
+
+                case "text":
+
+                    colorCode =
+                        textColor;
+
+                    break;
+
+                case "frame":
+
+                    colorCode =
+                        frameColor;
+
+                    break;
+
+                case "year":
+
+                    colorCode =
+                        yearColor;
+
+                    break;
+
+                default:
+
+                    colorCode =
+                        bgColor;
+            }
+
+            colorCounts[
+                colorCode
+            ] =
+                (
+                    colorCounts[
+                        colorCode
+                    ] || 0
+                ) + 1;
+        }
+
+        html += `
+            <p>
+                <strong>
+                    総数
+                </strong>
+            </p>
+        `;
+
+        Object.entries(
+            colorCounts
+        ).forEach(
+            ([color,count]) => {
+
+                html += `
+                    <div
+                        style="
+                            display:flex;
+                            align-items:center;
+                            gap:8px;
+                            margin-bottom:4px;
+                        "
+                    >
+
+                        <span
+                            style="
+                                display:inline-block;
+                                width:16px;
+                                height:16px;
+                                background:${color};
+                                border:1px solid #000;
+                            "
+                        ></span>
+
+                        ${count}
+
+                    </div>
+                `;
+            }
+        );
+
+        html += `
+            <p
+                style="
+                    margin-top:10px;
+                    font-weight:bold;
+                "
+            >
+                上から
+            </p>
+        `;
+
+        const segments = [];
+
+        let currentColor = null;
+        let currentCount = 0;
+
+        for(
+            let y = 0;
+            y < rows;
+            y++
+        ){
+
+            let colorCode = "";
+
+            switch(
+                grid[y][x]
+            ){
+
+                case "text":
+
+                    colorCode =
+                        textColor;
+
+                    break;
+
+                case "frame":
+
+                    colorCode =
+                        frameColor;
+
+                    break;
+
+                case "year":
+
+                    colorCode =
+                        yearColor;
+
+                    break;
+
+                default:
+
+                    colorCode =
+                        bgColor;
+            }
+
+            if(
+                currentColor === null
+            ){
+
+                currentColor =
+                    colorCode;
+
+                currentCount = 1;
+
+            }else if(
+                currentColor ===
+                colorCode
+            ){
+
+                currentCount++;
+
+            }else{
+
+                segments.push({
+
+                    color:
+                        currentColor,
+
+                    count:
+                        currentCount
+
+                });
+
+                currentColor =
+                    colorCode;
+
+                currentCount = 1;
+            }
+        }
+
+        segments.push({
+
+            color:
+                currentColor,
+
+            count:
+                currentCount
+
+        });
+
+        segments.forEach(
+            segment => {
+
+                html += `
+                    <div
+                        style="
+                            display:flex;
+                            align-items:center;
+                            gap:8px;
+                            margin-bottom:3px;
+                        "
+                    >
+
+                        <span
+                            style="
+                                display:inline-block;
+                                width:16px;
+                                height:16px;
+                                background:${segment.color};
+                                border:1px solid #000;
+                            "
+                        ></span>
+
+                        ${segment.count}
+
+                    </div>
+                `;
+            }
+        );
+
+        html += `
+            <hr
+                style="
+                    margin:15px 0;
+                "
+            >
+        `;
+        
+    }
+
     report.innerHTML =
-        "<p>列別色集計テスト成功</p>";
+        html;
 }
