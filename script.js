@@ -707,6 +707,9 @@ function generate() {
         frameColor,
         yearColor
     );
+
+    adjustBoardSize();
+
 }
 
 function buildColumnReport(
@@ -972,9 +975,43 @@ function buildColumnReport(
                 "
             >
         `;
-        
+
     }
 
     report.innerHTML =
         html;
+}
+
+function adjustBoardSize(){
+
+    if(window.innerWidth > 768){
+        return;
+    }
+
+    const wrapper =
+        document.getElementById(
+            "boardWrapper"
+        );
+
+    if(!wrapper){
+        return;
+    }
+
+    wrapper.style.zoom = "";
+
+    const actualWidth =
+        wrapper.scrollWidth;
+
+    const targetWidth =
+        400;
+
+    const scale =
+        Math.min(
+            1,
+            targetWidth /
+            actualWidth
+        );
+
+    wrapper.style.zoom =
+        scale;
 }
