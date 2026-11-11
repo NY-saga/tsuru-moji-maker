@@ -257,8 +257,7 @@ body{
         overflow:auto;
         -webkit-overflow-scrolling:touch;
 
-        display:flex;
-        justify-content:flex-start;
+        display:block;
     }
 
     #boardWrapper{
@@ -308,6 +307,17 @@ body{
     .leftMark{
         height:16px;
         line-height:16px;
+    }
+
+    #columnReportArea{
+        display:block;
+        width:100%;
+        margin-top:20px;
+    }
+
+    #columnReport{
+        width:100%;
+        white-space:normal;
     }
 
 }
