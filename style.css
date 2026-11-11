@@ -287,12 +287,16 @@ body{
     }
 
     .crane{
-        width:15px;
-        height:30px;
+        width:var(--mobile-crane-width);
+        height:var(--mobile-crane-height);
     }
 
     .crane + .crane{
-        margin-top:-16px;
+        margin-top:
+            calc(
+                var(--mobile-crane-height)
+                * -0.53
+            );
     }
 
     .topMark{
@@ -315,5 +319,10 @@ body{
         width:100%;
         white-space:normal;
     }
+
+    :root{
+    --mobile-crane-width:15px;
+    --mobile-crane-height:30px;
+}
 
 }

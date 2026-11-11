@@ -163,6 +163,8 @@ function generate() {
             ).value
         );
 
+    adjustMobileCraneSize(cols);
+    
     const textScale =
         parseInt(
             document.getElementById(
@@ -708,8 +710,6 @@ function generate() {
         yearColor
     );
 
-    adjustBoardSize();
-
 }
 
 function buildColumnReport(
@@ -982,36 +982,43 @@ function buildColumnReport(
         html;
 }
 
-function adjustBoardSize(){
+function adjustMobileCraneSize(cols){
 
     if(window.innerWidth > 768){
         return;
     }
 
-    const wrapper =
-        document.getElementById(
-            "boardWrapper"
-        );
+    let width = 15;
 
-    if(!wrapper){
-        return;
+    if(cols >= 80){
+
+        width = 10;
+
+    }else if(cols >= 70){
+
+        width = 11;
+
+    }else if(cols >= 60){
+
+        width = 12;
+
+    }else if(cols >= 50){
+
+        width = 13;
+
     }
 
-    wrapper.style.zoom = "";
-
-    const actualWidth =
-        wrapper.scrollWidth;
-
-    const targetWidth =
-        400;
-
-    const scale =
-        Math.min(
-            1,
-            targetWidth /
-            actualWidth
+    document.documentElement
+        .style
+        .setProperty(
+            "--mobile-crane-width",
+            width + "px"
         );
 
-    wrapper.style.zoom =
-        scale;
+    document.documentElement
+        .style
+        .setProperty(
+            "--mobile-crane-height",
+            (width * 2) + "px"
+        );
 }
