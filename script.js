@@ -164,7 +164,7 @@ function generate() {
         );
 
     adjustMobileCraneSize(cols);
-    
+
     const textScale =
         parseInt(
             document.getElementById(
@@ -700,6 +700,16 @@ function generate() {
         );
     }
 
+    buildTotalColorReport(
+        grid,
+        cols,
+        rows,
+        textColor,
+        bgColor,
+        frameColor,
+        yearColor
+    );
+
     buildColumnReport(
         grid,
         cols,
@@ -739,13 +749,16 @@ function buildColumnReport(
         x++
     ){
 
-        html += `
-            <h3>
-                L${String(x + 1)
-                    .padStart(3,"0")}
-                （左から${x + 1}列）
-            </h3>
-        `;
+    html += `
+        <div class="reportCard">
+
+        <h3>
+            L${String(x + 1)
+                .padStart(3,"0")}
+            （左から${x + 1}列）
+        </h3>
+    `;
+
 
         const colorCounts = {};
 
@@ -799,11 +812,9 @@ function buildColumnReport(
         }
 
         html += `
-            <p>
-                <strong>
-                    総数
-                </strong>
-            </p>
+            <div class="reportSectionTitle">
+                総数
+            </div>
         `;
 
         Object.entries(
@@ -812,22 +823,12 @@ function buildColumnReport(
             ([color,count]) => {
 
                 html += `
-                    <div
-                        style="
-                            display:flex;
-                            align-items:center;
-                            gap:8px;
-                            margin-bottom:4px;
-                        "
-                    >
+                    <div class="colorCount">
 
                         <span
+                            class="colorSample"
                             style="
-                                display:inline-block;
-                                width:16px;
-                                height:16px;
                                 background:${color};
-                                border:1px solid #000;
                             "
                         ></span>
 
@@ -835,6 +836,7 @@ function buildColumnReport(
 
                     </div>
                 `;
+
             }
         );
 
@@ -845,7 +847,7 @@ function buildColumnReport(
                     font-weight:bold;
                 "
             >
-                上から
+                
             </p>
         `;
 
@@ -969,11 +971,7 @@ function buildColumnReport(
         );
 
         html += `
-            <hr
-                style="
-                    margin:15px 0;
-                "
-            >
+            </div>
         `;
 
     }
@@ -1021,4 +1019,133 @@ function adjustMobileCraneSize(cols){
             "--mobile-crane-height",
             (width * 2) + "px"
         );
+}
+
+function buildTotalColorReport(
+    grid,
+    cols,
+    rows,
+    textColor,
+    bgColor,
+    frameColor,
+    yearColor
+){
+
+    const report =
+        document.getElementById(
+            "totalColorReport"
+        );
+
+    if(!report){
+        return;
+    }
+
+    const colorCounts = {};
+
+    for(
+        let y = 0;
+        y < rows;
+        y++
+    ){
+
+        for(
+            let x = 0;
+            x < cols;
+            x++
+        ){
+
+            let colorCode = "";
+
+            switch(
+                grid[y][x]
+            ){
+
+                case "text":
+
+                    colorCode =
+                        textColor;
+
+                    break;
+
+                case "frame":
+
+                    colorCode =
+                        frameColor;
+
+                    break;
+
+                case "year":
+
+                    colorCode =
+                        yearColor;
+
+                    break;
+
+                default:
+
+                    colorCode =
+                        bgColor;
+            }
+
+            colorCounts[
+                colorCode
+            ] =
+                (
+                    colorCounts[
+                        colorCode
+                    ] || 0
+                ) + 1;
+        }
+    }
+
+    let html = `
+        <h2>
+            必要枚数
+        </h2>
+    `;
+
+    Object.entries(
+        colorCounts
+    ).forEach(
+        ([color,count]) => {
+
+            html += `
+                <div
+                    style="
+                        display:flex;
+                        align-items:center;
+                        gap:8px;
+                        margin-bottom:4px;
+                    "
+                >
+                    <span
+                        style="
+                            display:inline-block;
+                            width:16px;
+                            height:16px;
+                            background:${color};
+                            border:1px solid #000;
+                        "
+                    ></span>
+
+                    ${count}
+                </div>
+            `;
+        }
+    );
+
+    html += `
+        <p
+            style="
+                margin-top:10px;
+                font-weight:bold;
+            "
+        >
+            合計
+            ${rows * cols}羽
+        </p>
+    `;
+
+    report.innerHTML =
+        html;
 }
